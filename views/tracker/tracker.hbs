@@ -1,0 +1,20 @@
+<h1> IronTracker © </h1>
+
+
+{{!-- EACH STAGE --}}
+
+{{#each stages}}
+<div class="stage">
+    <p>{{this.name}}</p>
+    <a href="">New job</a>
+    {{#each this.jobs}}
+            <div class="job">
+                <p>{{this.position}}</p>
+                <p>{{this.companyName}}</p>
+                <a href="/tracker/stage/{{../this._id}}/job/{{this._id}}">See more</a>
+            </div>
+{{/each}}
+
+</div>
+{{/each}}
+

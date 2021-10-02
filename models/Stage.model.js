@@ -5,10 +5,13 @@ const stageSchema = new Schema({
     type: String,
     // unique: true,
   },
-  jobs: {
-    type: Mongoose.Schema.Types.ObjectId,
-    ref: "Job",
-  },
+  order: Number,
+  jobs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Job",
+    },
+  ],
 });
 
 const Stage = model("Stage", stageSchema);
