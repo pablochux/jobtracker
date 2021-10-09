@@ -1,19 +1,35 @@
-<a href="/tracker">Go back</a>
+<button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.48 0.187498C6.74 0.437498 6.74 0.848212 6.48 1.0625L2.98857 4.38393L12.85 4.38393C13.2029 4.38393 13.5 4.66964 13.5 5.00893C13.5 5.34821 13.2214 5.63393 12.85 5.63393L2.98857 5.63393L6.48 8.9375C6.74 9.1875 6.74 9.5625 6.48 9.8125C6.22 10.0625 5.83 10.0625 5.57 9.8125L0.5 5.00893L5.60714 0.187498C5.83 -0.0625033 6.25714 -0.0625034 6.48 0.187498Z" fill="#212353"/>
+</svg>
+
+  <span><a href="/tracker">Go back</a></span>
+</button>
 
 
-<p>Stage:{{stageName}}</p>
-
-<h2> Job Details </h2>
-
-
-<p>{{job.companyName}}</p>
-<p>{{job.position}}</p>
-<p>{{job.url}}</p>
-<p>{{job.location}}</p>
-<p>{{job.remote}}</p>
-<p>{{job.salary}}</p>
-<p>{{job.notes}}</p>
-
-<a href="/tracker/stage/{{stageId}}/job/{{jobId}}/edit">Edit</a>
-
-http://localhost:3000/tracker/tracker/stage/61582b6220578634a2d5d5d6/job/61582b6220578634a2d5d5d7
+<div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1 gap-5">
+    <!--Card 1-->
+    <div class="rounded overflow-hidden shadow-lg">
+       
+      <div class="px-12 py-12">
+       <span class="inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Stage: {{stageName}}</span>   
+        <div class="font-bold text-xl mb-2">{{job.companyName}}</div>
+        <div class="font-bold text-l mb-2">{{job.position}}</div>
+        
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{job.location}}</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{job.remote}}</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">${{job.salary}}</span>
+    
+        <p class="text-gray-700 text-base">{{job.notes}}</p>
+      </div>
+      <div class="px-12 pt-12 pb-12">
+        <a href="{{job.url}}" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Access Job Post</a>
+        <br>
+        <br>     
+        <a class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" href="/tracker/stage/{{stageId}}/job/{{jobId}}/edit">Edit</a>
+        <br>
+        <br>     
+      </div>
+    </div>
+  </div>
+</div>

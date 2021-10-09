@@ -5,6 +5,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 const Job = require("../models/Job.model");
 const Stage = require("../models/Stage.model");
 
+// 001 TRACKER ROUTE
 router.get("/", (req, res) => {
   Stage.find()
     .populate("jobs")
@@ -14,17 +15,49 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/new", (req, res) => {
-  res.render("tracker/new");
+// 002 NEW JOB ROUTE
+router.get("/new/stageName/:stageName", (req, res) => {
+  console.log(req.params.stageName);
+  res.render("tracker/new", {
+    stageName: req.params.stageName,
+  });
 });
 
+// 002 NEW JOB ROUTE
+router.post("/new/create", (req, res) => {
+  const { companyName, position, url, location, remote, salary, notes, stage } =
+    req.body;
+  console.log(req.body);
+  Job.create({
+    companyName,
+    url,
+    position,
+    salary,
+    location,
+    remote,
+    notes,
+  }).then((createdJob) => {
+    console.log(createdJob);
+    console.log(stage);
+    const jobId = createdJob._id;
+    // Add the job id to
+    Stage.updateOne({ name: stage }, { $push: { jobs: [jobId] } })
+      .then((success) => {
+        console.log(success);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    res.redirect("/tracker");
+  });
+});
+
+// 003 DETAIL ROUTE
 router.get("/stage/:stageId/job/:jobId", (req, res) => {
-  console.log(req.params);
   // 001 I search for the the name of the stage
   Stage.findById(req.params.stageId).then((stage) => {
     // 002 Then I find the information about the job
     Job.findById(req.params.jobId).then((job) => {
-      console.log(job);
       res.render("tracker/detail", {
         stageId: req.params.stageId,
         jobId: req.params.jobId,
@@ -35,6 +68,7 @@ router.get("/stage/:stageId/job/:jobId", (req, res) => {
   });
 });
 
+// 004 EDIT ROUTE
 router.get("/stage/:stageId/job/:jobId/edit", (req, res) => {
   console.log("In Edit view");
   Stage.findById(req.params.stageId).then((stage) => {
@@ -51,6 +85,7 @@ router.get("/stage/:stageId/job/:jobId/edit", (req, res) => {
   });
 });
 
+// 005 UPDATED ROUTE
 router.get("/stage/:stageId/job/:jobId/updated", (req, res) => {
   console.log(UPDATED);
   // 001 I search for the the name of the stage
