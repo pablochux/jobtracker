@@ -175,7 +175,7 @@ router.post("/newStage", isLoggedInMiddleware, (req, res) => {
 });
 
 // 008 Shared Tracker
-router.get("/shared/:sharedId", isLoggedInMiddleware, (req, res) => {
+router.get("/shared/:sharedId", (req, res) => {
   // I need to update it to only find the user's stages
   Stage.find({ author: req.params.sharedId })
     .populate("jobs")
