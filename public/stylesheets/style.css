@@ -3,7 +3,6 @@
   margin: 0px;
 }
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -35,6 +34,7 @@ a {
   padding: 8px;
   margin-top: 12px;
   color: #fff;
+  background: linear-gradient(90deg, #3f2b96 0%, #a8c0ff 100%);
 }
 
 div.scroll {

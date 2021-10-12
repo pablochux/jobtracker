@@ -3,7 +3,7 @@
 <path d="M6.48 0.187498C6.74 0.437498 6.74 0.848212 6.48 1.0625L2.98857 4.38393L12.85 4.38393C13.2029 4.38393 13.5 4.66964 13.5 5.00893C13.5 5.34821 13.2214 5.63393 12.85 5.63393L2.98857 5.63393L6.48 8.9375C6.74 9.1875 6.74 9.5625 6.48 9.8125C6.22 10.0625 5.83 10.0625 5.57 9.8125L0.5 5.00893L5.60714 0.187498C5.83 -0.0625033 6.25714 -0.0625034 6.48 0.187498Z" fill="#212353"/>
 </svg>
 
-  <span><a href="/tracker">Go back</a></span>
+  <span><a href="/shared/{{">Go back</a></span>
 </button>
 
 
@@ -24,25 +24,11 @@
       </div>
       <div class="px-12 pt-12 pb-12">
         <a target="_blank" href="{{job.url}}" class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">Access Job Post</a>
-        <br>
-        <br>     
-        <a class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" href="/tracker/stage/{{stageId}}/job/{{jobId}}/edit">Edit</a>
+
         <br>
         <br>     
       </div>
-       <div class="px-12 pt-12 pb-12">
-            Quickly change status :
-        <form action="/tracker/stage/{{stageId}}/job/{{jobId}}/quickUpdate" method="POST">
-            <select name="stage" id="stageInput">
-                    <option selected name="{{stageName}}"> {{stageName}} </option>
-                {{#each stagesWithoutCurrent}}
-                    <option name="{{this.name}}"> {{this.name}} </option>
-                {{/each}}
-            </select>
-
-            <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit"> Quick move </button>
-        </form>
-        </div>
+      
     </div>
   </div>
 </div>

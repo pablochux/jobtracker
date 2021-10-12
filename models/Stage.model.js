@@ -12,6 +12,10 @@ const stageSchema = new Schema({
       ref: "Job",
     },
   ],
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Stage = model("Stage", stageSchema);

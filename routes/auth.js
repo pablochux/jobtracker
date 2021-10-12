@@ -68,7 +68,10 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
-        res.redirect("/");
+
+        // HERE WE SHOULD CREATE SOME STAGES FOR EACH
+
+        res.redirect("/tracker");
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -129,7 +132,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
         }
         req.session.user = user;
         // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        return res.redirect("/tracker");
       });
     })
 

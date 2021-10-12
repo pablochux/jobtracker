@@ -1,23 +1,29 @@
-<h1 class="text-3xl"> IronTracker © </h1>
-
+<h1 class="text-3xl"> {{userName}} IronTracker © </h1>
+<a target="_blank" href="tracker/shared/{{sharedId}}">Open public url</a>
 
 {{!-- EACH STAGE --}}
 
 <div class="scroll">
-{{#each stages}}
-<div class="stage {{this.name}}">
-    <span class="text-xs inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{this.name}}</span>   
-    <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-1 border border-gray-400 rounded shadow"><a href="/tracker/new/stageName/{{this.name}}">New job</a></button>
-    {{#each this.jobs}}
-            <a href="/tracker/stage/{{../this._id}}/job/{{this._id}}">
-                <div class="job">
-                    <p class="text-base font-semibold">{{this.position}}</p>
-                    <p class="text-sm">{{this.companyName}}</p>                
-                </div>
-            </a>
-{{/each}}
+    {{#each stages}}
+    <div class="stage {{this.name}}">
+        <span class="text-xs inline-block bg-green-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{this.name}}</span>   
+        <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-1 border border-gray-400 rounded shadow"><a href="/tracker/new/stageName/{{this.name}}">New job</a></button>
+        {{#each this.jobs}}
+                <a href="/tracker/stage/{{../this._id}}/job/{{this._id}}">
+                    <div class="job">
+                        <p class="text-base font-semibold">{{this.position}}</p>
+                        <p class="text-sm">{{this.companyName}}</p>                
+                    </div>
+                </a>
 
-</div>
-{{/each}}
+        {{/each}}
+    </div>
+    {{/each}}
+    <div class="stage">
+        <form action="tracker/newStage" method="POST">
+            <input type="text" placeholder="Stage Name" name="stageName">
+            <button class="bg-gray hover:bg-gray-100 text-gray-800 font-semibold py-1 px-1 border border-gray-400 rounded shadow" type="submit">+ Add a new stage</a></button>
+        </form>
+    </div>
 </div>
 

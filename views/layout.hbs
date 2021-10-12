@@ -10,7 +10,22 @@
    </head>
 
    <body>
-
+     <nav>
+      <a href="/tracker">Home</a>
+      {{#if user}}
+        <p>
+          Hello
+          {{user.name}}
+          <br />
+          <a href="/auth/logout">Logout</a>
+          <br />
+          <a href="/profile">Go to profile</a>
+        </p>
+      {{else}}
+        <a href="/auth/signup">Sign Up</a>
+        <a href="/auth/login">Log In</a>
+      {{/if}}
+    </nav>
       {{{body}}}
 
       <script src="/js/script.js"></script>
@@ -18,3 +33,4 @@
    </body>
 
 </html>
+
