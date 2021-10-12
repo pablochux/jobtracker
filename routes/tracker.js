@@ -182,7 +182,6 @@ router.get("/shared/:sharedId", (req, res) => {
     .then((stages) => {
       res.render("tracker/sharedTracker", {
         stages: stages,
-        userName: req.session.user.username,
         sharedId: req.params.sharedId,
       });
     });
