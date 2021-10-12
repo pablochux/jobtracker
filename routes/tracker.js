@@ -55,14 +55,26 @@ router.post("/new/create", (req, res) => {
 // 003 DETAIL ROUTE
 router.get("/stage/:stageId/job/:jobId", (req, res) => {
   // 001 I search for the the name of the stage
-  Stage.findById(req.params.stageId).then((stage) => {
-    // 002 Then I find the information about the job
-    Job.findById(req.params.jobId).then((job) => {
-      res.render("tracker/detail", {
-        stageId: req.params.stageId,
-        jobId: req.params.jobId,
-        stageName: stage.name,
-        job: job,
+  Stage.find().then((stages) => {
+    Stage.findById(req.params.stageId).then((stage) => {
+      // 002 Then I find the information about the job
+      Job.findById(req.params.jobId).then((job) => {
+        console.log("STAGES");
+        console.log(stages);
+        const stagesWithoutCurrent = stages.filter(
+          (elem) => elem.name !== stage.name
+        );
+        console.log("HERE");
+        console.log(stage.name);
+        console.log(stagesWithoutCurrent);
+        res.render("tracker/detail", {
+          stageId: req.params.stageId,
+          jobId: req.params.jobId,
+          stageName: stage.name,
+          job: job,
+          stages: stages,
+          stagesWithoutCurrent: stagesWithoutCurrent,
+        });
       });
     });
   });
@@ -71,6 +83,7 @@ router.get("/stage/:stageId/job/:jobId", (req, res) => {
 // 004 EDIT ROUTE
 router.get("/stage/:stageId/job/:jobId/edit", (req, res) => {
   console.log("In Edit view");
+
   Stage.findById(req.params.stageId).then((stage) => {
     // 002 Then I find the information about the job
     Job.findById(req.params.jobId).then((job) => {
@@ -101,6 +114,33 @@ router.get("/stage/:stageId/job/:jobId/updated", (req, res) => {
       });
     });
   });
+});
+
+// 006 Quick Update
+router.post("/stage/:stageId/job/:jobId/quickUpdate", (req, res) => {
+  console.log("QUICK UPDATE");
+  // 1 - Guardamos el valor de ID del job
+  const oldStageId = req.params.stageId;
+  const jobId = req.params.jobId;
+  const newStageId = req.body.stage;
+
+  // 2 - Eliminamos el job del Stage en la bbdd
+  Stage.updateOne({ _id: oldStageId }, { $pullAll: { jobs: [jobId] } })
+    .then((success1) => {
+      console.log(success1);
+      // 3 - Añadimos el job al nuevo stage
+      Stage.updateOne({ name: newStageId }, { $push: { jobs: [jobId] } })
+        .then((success2) => {
+          console.log(success2);
+          res.redirect("/tracker");
+        })
+        .catch((error1) => {
+          console.log(error1);
+        });
+    })
+    .catch((error2) => {
+      console.log(error2);
+    });
 });
 
 // localhost:3000/tracker/stage:id/job:id

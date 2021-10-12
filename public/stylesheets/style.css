@@ -11,26 +11,67 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
+.theTitle {
 }
 
 .stage {
-  border: 1px solid #000;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
   border-radius: 4px;
   padding: 16px;
+  min-width: 260px;
   margin-right: 32px;
   display: inline-block;
   min-height: 600px;
+  margin: 16px;
+}
+
+.stage:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .job {
-  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
   border-radius: 4px;
   padding: 8px;
+  margin-top: 12px;
   color: #fff;
 }
 
 div.scroll {
-  white-space: nowrap;
+  display: flex;
+  overflow-x: auto;
+  margin: 8px 0;
 }
+
+.Wishlist .job {
+  background: linear-gradient(90deg, #3f2b96 0%, #a8c0ff 100%);
+}
+
+.Applied .job {
+  background: linear-gradient(90deg, #fcff9e 0%, #c67700 100%);
+}
+
+.Phone .job {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+}
+
+.On .job {
+  background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+}
+
+.Offer .job {
+  background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
+}
+
+.Accepted .job {
+  background: linear-gradient(90deg, #9ebd13 0%, #008552 100%);
+}
+.Rejected .job {
+  background: linear-gradient(90deg, #fc466b 0%, #3f5efb 100%);
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+}
+
+/* On mouse-over, add a deeper shadow */

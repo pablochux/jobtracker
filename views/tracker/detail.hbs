@@ -30,6 +30,21 @@
         <br>
         <br>     
       </div>
+       <div class="px-12 pt-12 pb-12">
+            Quickly change status :
+        <form action="/tracker/stage/{{stageId}}/job/{{jobId}}/quickUpdate" method="POST">
+            <select name="stage" id="stageInput">
+                    <option selected name="{{stageName}}"> {{stageName}} </option>
+                {{#each stagesWithoutCurrent}}
+                    <option name="{{this.name}}"> {{this.name}} </option>
+                {{/each}}
+            </select>
+
+            <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit"> Quick move </button>
+        </form>
+        </div>
     </div>
   </div>
 </div>
+
+
