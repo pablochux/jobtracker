@@ -4,6 +4,24 @@
 }
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 8px;
+}
+
+.left {
+  display: flex;
+  margin-top: 16px;
+}
+
+.right {
+  margin-top: 16px;
+}
+
+.heyAndre {
+  margin: 8px;
+}
+
+.inline {
+  display: inline;
 }
 
 a {

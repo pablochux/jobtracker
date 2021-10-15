@@ -10,16 +10,13 @@
    </head>
 
    <body>
-     <nav>
-      <a href="/tracker">Home</a>
+     <nav class="heyAndre">
+      <a class="inline" href="/tracker">Home</a>
       {{#if user}}
-        <p>
-          Hello {{user.name}}
           <a href="/auth/logout" class="red">Logout</a>
-        </p>
       {{else}}
-        <a href="/auth/signup">Sign Up</a>
-        <a href="/auth/login">Log In</a>
+        <a class="inline" href="/auth/signup">Sign Up</a>
+        <a class="inline" href="/auth/login">Log In</a>
       {{/if}}
     </nav>
       {{{body}}}
