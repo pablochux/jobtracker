@@ -75,3 +75,7 @@ div.scroll {
 }
 
 /* On mouse-over, add a deeper shadow */
+
+.red {
+  color: red;
+}

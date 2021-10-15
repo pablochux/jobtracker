@@ -60,7 +60,7 @@ router.post("/new/create", isLoggedInMiddleware, (req, res) => {
 router.get("/stage/:stageId/job/:jobId", isLoggedInMiddleware, (req, res) => {
   // I need to update it to only find the user's stages
   // 001 I search for the the name of the stage
-  Stage.find().then((stages) => {
+  Stage.find({ author: req.session.user._id }).then((stages) => {
     Stage.findById(req.params.stageId).then((stage) => {
       // 002 Then I find the information about the job
       Job.findById(req.params.jobId).then((job) => {
@@ -108,24 +108,46 @@ router.get(
 );
 
 // 005 UPDATED ROUTE
-router.get(
+router.post(
   "/stage/:stageId/job/:jobId/updated",
   isLoggedInMiddleware,
   (req, res) => {
-    console.log(UPDATED);
-    // 001 I search for the the name of the stage
-    Stage.findById(req.params.stageId).then((stage) => {
-      // 002 Then I find the information about the job
-      Job.findById(req.params.jobId).then((job) => {
-        console.log(job);
-        res.render("tracker/detail", {
-          stageId: req.params.stageId,
-          jobId: req.params.jobId,
-          stageName: stage.name,
-          job: job,
-        });
-      });
+    console.log("Trying to update");
+    const jobId = req.params.jobId;
+
+    const {
+      companyName,
+      position,
+      url,
+      location,
+      remote,
+      salary,
+      notes,
+      stage,
+    } = req.body;
+    console.log(req.body);
+
+    // We update the job
+    Job.findByIdAndUpdate(jobId, {
+      companyName,
+      url,
+      position,
+      salary,
+      location,
+      remote,
+      notes,
+    }).then(() => {
+      console.log("UPDATED SUCCESSFUL YESSS");
     });
+
+    // Redirect to the edit route
+    const route =
+      "/tracker/stage/" +
+      req.params.stageId +
+      "/job/" +
+      req.params.jobId +
+      "/edit";
+    res.redirect(route);
   }
 );
 
@@ -211,5 +233,7 @@ router.get("/shared/:sharedId/stage/:stageId/job/:jobId", (req, res) => {
     });
   });
 });
+
+// 010 Edit
 
 module.exports = router;

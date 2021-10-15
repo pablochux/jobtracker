@@ -14,12 +14,8 @@
       <a href="/tracker">Home</a>
       {{#if user}}
         <p>
-          Hello
-          {{user.name}}
-          <br />
-          <a href="/auth/logout">Logout</a>
-          <br />
-          <a href="/profile">Go to profile</a>
+          Hello {{user.name}}
+          <a href="/auth/logout" class="red">Logout</a>
         </p>
       {{else}}
         <a href="/auth/signup">Sign Up</a>
